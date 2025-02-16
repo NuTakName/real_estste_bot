@@ -1,0 +1,14 @@
+# Игнорировать все файлы с расширением .log
+*.log
+
+# Игнорировать папку temp/
+temp/
+
+# Игнорировать все файлы .env
+.venv
+
+
+settings.toml
+alembic.ini
+alembic
+photos

@@ -1,0 +1,15 @@
+aiogram
+loguru
+notifiers
+setuptools
+SQLAlchemy
+asyncpg
+alembic
+psycopg
+psycopg2-binary
+ring
+aiokafka
+playwright
+tqdm
+celery
+redis
