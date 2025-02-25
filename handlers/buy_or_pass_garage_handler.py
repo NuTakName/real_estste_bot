@@ -31,7 +31,7 @@ async def buy_or_rent_garage(
     if garage:
         media = get_media_group(data=garage)
         await send_media_group_and_push_messages_to_state(
-            state=state, media=media, callback=callback
+            state=state, media=media, callback=callback, user=user
         )
         text = get_text_for_ads_mess(entity=garage, user=user)
         reply_markup = get_paginator_kb(id_=garage.id, action=callback_data.action, index=0)
@@ -60,7 +60,7 @@ async def show_owner_or_next_garage(
     if garage:
         media = get_media_group(data=garage)
         await send_media_group_and_push_messages_to_state(
-            state=state, media=media, callback=callback
+            state=state, media=media, callback=callback, user=user
         )
         text = get_text_for_ads_mess(entity=garage, user=user)
         reply_markup = get_paginator_kb(id_=garage.id, action=callback_data.do, index=callback_data.index + 1)

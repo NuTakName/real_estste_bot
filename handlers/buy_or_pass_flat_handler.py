@@ -31,7 +31,7 @@ async def buy_or_rent_flat(
     if flat:
         media = get_media_group(data=flat)
         await send_media_group_and_push_messages_to_state(
-            state=state, media=media, callback=callback
+            state=state, media=media, callback=callback, user=user
         )
         text = get_text_for_ads_mess(entity=flat, user=user)
         reply_markup = get_paginator_kb(id_=flat.id, action=callback_data.action, index=0)
@@ -61,7 +61,7 @@ async def show_owner_or_next_flat(
     if flat:
         media = get_media_group(data=flat)
         await send_media_group_and_push_messages_to_state(
-            state=state, media=media, callback=callback
+            state=state, media=media, callback=callback, user=user
         )
         text = get_text_for_ads_mess(entity=flat, user=user)
         reply_markup = get_paginator_kb(id_=flat.id, action=callback_data.do, index=callback_data.index+1)

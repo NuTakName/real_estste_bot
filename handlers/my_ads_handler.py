@@ -47,7 +47,7 @@ async def confirm_delete_ads(
             type_=type_,
             index=index
         )
-        await send_media_group_and_push_messages_to_state(state=state, media=media, callback=callback)
+        await send_media_group_and_push_messages_to_state(state=state, media=media, callback=callback, user=user)
         await push_message_to_state(
             await callback.message.answer(text=text, reply_markup=reply_markup),
             state=state
@@ -67,7 +67,8 @@ async def handle_my_ads(
         callback: types.CallbackQuery,
         callback_data: AdsCallbackData,
         state: FSMContext,
-        admin: bool
+        admin: bool,
+        user: User
 ):
     await clear_dialog(state=state)
     cached_ads = CachedAds()
@@ -76,8 +77,8 @@ async def handle_my_ads(
     else:
         data = cached_ads.get_previous(index=callback_data.index, user_id=callback.from_user.id)
     if data:
-        text, type_, media = get_text_for_ads_message(data=data)
-        await send_media_group_and_push_messages_to_state(state=state, media=media, callback=callback)
+        text, type_, media = get_text_for_ads_message(data=data, user=user)
+        await send_media_group_and_push_messages_to_state(state=state, media=media, callback=callback, user=user)
         reply_markup = get_my_ads_kb(
             id_=data.id,
             type_=type_,
