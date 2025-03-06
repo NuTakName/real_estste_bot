@@ -34,8 +34,7 @@ def get_media_group(data: Union[Flat, Garage, House]) -> list:
     media = []
     for photo in data.photos:
         if ".jpg" in photo or ".svg" in photo or ".png" in photo:
-            file_id = f"photos/{photo}"
-            media.append(InputMediaPhoto(media=FSInputFile(path=file_id)))
+            media.append(InputMediaPhoto(media=FSInputFile(path=photo)))
         else:
             media.append(InputMediaPhoto(media=photo))
     return media
@@ -133,7 +132,7 @@ def get_text_for_ads_mess(entity: Union[Flat, House, Garage], user: User) -> str
             f'Полный адрес: {full_address}\n'
             f'Цена: {price}\n'
             f'Дополнительная информация: {info}\n'
-            f'Продавец: {contact}\n'
+            f'Продавец: {contact if contact else user.first_name}\n'
             f'{additional_info}')
     return text.strip()
 
