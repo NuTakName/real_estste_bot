@@ -110,7 +110,7 @@ async def send_reason(message: types.Message, state: FSMContext, user: User):
     await message.delete()
     if new_data:
         text, type_, media = get_text_for_ads_message(data=new_data, user=user)
-        await send_media_group_and_push_messages_to_state(state=state, media=media, callback=message)
+        await send_media_group_and_push_messages_to_state(state=state, media=media, callback=message, user=user)
         reply_markup = get_confirmed_kb(id_=new_data.id, type_=type_, index=data.get("index", 0) + 1)
         await push_message_to_state(
             await message.answer(text=text, reply_markup=reply_markup),
